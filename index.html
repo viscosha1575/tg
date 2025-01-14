@@ -8,26 +8,21 @@
         window.onload = () => {
             const telegram = window.Telegram.WebApp;
 
-            // Инициализация
-            telegram.ready();
+            // Проверяем, доступен ли Telegram WebApp API
+            const logElement = document.createElement('pre');
+            logElement.style.color = 'blue';
 
-            // Получение информации о пользователе
-            const user = telegram.initDataUnsafe.user;
-            document.getElementById('user-info').textContent = `Привет, ${user.first_name}!`;
+            if (telegram) {
+                logElement.textContent = `Telegram WebApp: ${JSON.stringify(telegram)}`;
+            } else {
+                logElement.textContent = 'Telegram WebApp API недоступен!';
+            }
 
-            // Отправка события и отображение данных
-            document.getElementById('btn').onclick = () => {
-                const data = 'Пример данных для Telegram';
-                telegram.sendData(data); // Отправляем данные в Telegram
-                document.getElementById('output').textContent = `Отправлено: ${data}`; // Отображаем данные в приложении
-            };
+            document.body.appendChild(logElement);
         };
     </script>
 </head>
 <body>
     <h1>Привет из мини-приложения!</h1>
-    <p id="user-info"></p>
-    <button id="btn">Отправить данные</button>
-    <p id="output" style="margin-top: 20px; color: blue;"></p> <!-- Здесь будут отображаться отправленные данные -->
 </body>
 </html>
