@@ -15,9 +15,11 @@
             const user = telegram.initDataUnsafe.user;
             document.getElementById('user-info').textContent = `Привет, ${user.first_name}!`;
 
-            // Отправка события
+            // Отправка события и отображение данных
             document.getElementById('btn').onclick = () => {
-                telegram.sendData('Пример данных для Telegram');
+                const data = 'Пример данных для Telegram';
+                telegram.sendData(data); // Отправляем данные в Telegram
+                document.getElementById('output').textContent = `Отправлено: ${data}`; // Отображаем данные в приложении
             };
         };
     </script>
@@ -26,5 +28,6 @@
     <h1>Привет из мини-приложения!</h1>
     <p id="user-info"></p>
     <button id="btn">Отправить данные</button>
+    <p id="output" style="margin-top: 20px; color: blue;"></p> <!-- Здесь будут отображаться отправленные данные -->
 </body>
 </html>
